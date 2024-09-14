@@ -46,37 +46,61 @@ Before running the project, ensure you have the following installed:
 
 ## Usage
 
+Here's the updated **Usage** section with a more consistent format:
+
+---
+
+## Usage
+
 ### Available Commands:
 
-# Adding a new task
-java TaskCLIApp add "Buy groceries"
-# Output: Task added successfully (ID: 1)
+#### Add a new task:
+```bash
+java TaskTrackerApp add "Buy groceries"
+```
+**Output**: Task added successfully (ID: 1)
 
-# Updating a task
-java TaskCLIApp update 1 "Buy groceries and cook dinner"
-# Output: Task updated successfully (ID: 1)
+#### Update a task:
+```bash
+java TaskTrackerApp update 1 "Buy groceries and cook dinner"
+```
+**Output**: Task updated successfully (ID: 1)
 
-# Deleting a task
-java TaskCLIApp delete 1
-# Output: Task deleted successfully (ID: 1)
+#### Delete a task:
+```bash
+java TaskTrackerApp delete 1
+```
+**Output**: Task deleted successfully (ID: 1)
 
-# Marking a task as in progress
-java TaskCLIApp mark-in-progress 1
-# Output: Task marked as in progress (ID: 1)
+#### Mark a task as in progress:
+```bash
+java TaskTrackerApp mark-in-progress 1
+```
+**Output**: Task marked as in progress (ID: 1)
 
-# Marking a task as done
-java TaskCLIApp mark-done 1
-# Output: Task marked as done (ID: 1)
+#### Mark a task as done:
+```bash
+java TaskTrackerApp mark-done 1
+```
+**Output**: Task marked as done (ID: 1)
 
-# Listing all tasks
-java TaskCLIApp list
-# Output: List of all tasks
+#### List all tasks:
+```bash
+java TaskTrackerApp list
+```
+**Output**: List of all tasks
 
-# Listing tasks by status
-java TaskCLIApp list todo
-java TaskCLIApp list in-progress
-java TaskCLIApp list done
+#### List tasks by status:
+```bash
+java TaskTrackerApp list todo
+java TaskTrackerApp list in-progress
+java TaskTrackerApp list done
+```
+**Output**: List of tasks with the specified status
 
+---
+
+This format is clearer and aligns with standard command-line documentation practices, making it easier for users to follow and understand how to interact with the application.
 
 ## Project Structure
 
@@ -94,13 +118,7 @@ Tasks are stored in `tasks.json` in the following format:
 
 ```json
 [
-  {
-    "id": "1",
-    "description": "Solve problem",
-    "status": "TODO",
-    "createdAt": "2024-09-12T10:15:30",
-    "updatedAt": "2024-09-12T10:15:30"
-  }
+  { "id": "1", "description": "Solve problem", "status": "TODO", "createdAt": "2024-09-12T10:15:30", "updatedAt": "2024-09-12T10:15:30"}
 ]
 ```
 
