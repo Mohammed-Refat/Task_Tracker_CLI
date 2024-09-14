@@ -44,11 +44,6 @@ Before running the project, ensure you have the following installed:
    java TaskTrackerApp [command] [options]
    ```
 
-## Usage
-
-Here's the updated **Usage** section with a more consistent format:
-
----
 
 ## Usage
 
