@@ -121,4 +121,5 @@ Tasks are stored in `tasks.json` in the following format:
 Feel free to fork this repository and submit a pull request with improvements or bug fixes.
 
 ## Project Page
-Visit the project page on GitHub: Task Tracker CLI
+Visit the project page on GitHub: [Task Tracker CLI](https://github.com/Mohammed-Refat/task_tracker_cli)
+
