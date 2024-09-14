@@ -33,6 +33,11 @@ public class Task {
         this.updatedAt = LocalDateTime.now();
     }
 
+    public void markDone(){
+        this.status = Status.DONE;
+        this.updatedAt = LocalDateTime.now();
+    }
+
     public void updateDescription(String description){
         this.description = description;
         this.updatedAt = LocalDateTime.now();
@@ -44,33 +49,28 @@ public class Task {
     }
 
     public static Task fromJson(String json) {
-        try {
-            String[] fields = json.replace("{", "").replace("}", "").replace("\"", "").split(",");
-            int id = Integer.parseInt(fields[0].split(":")[1].trim());
-            String description = fields[1].split(":")[1].trim();
-            String statusString = fields[2].split(":")[1].trim();
-            String createdAtStr = fields[3].split(":")[1].trim();
-            String updatedAtStr = fields[4].split(":")[1].trim();
+        json = json.replace("{", "").replace("}", "").replace("\"", "");
+        String[] json1 = json.split(",");
 
-            Status status = Status.valueOf(statusString.toUpperCase());
-            LocalDateTime createdAt = LocalDateTime.parse(createdAtStr, formatter);
-            LocalDateTime updatedAt = LocalDateTime.parse(updatedAtStr, formatter);
+        String id = json1[0].split(":")[1].strip();
+        String description = json1[1].split(":")[1].strip();
+        String statusString = json1[2].split(":")[1].strip();
+        String createdAtStr = json1[3].split("[a-z]:")[1].strip();
+        String updatedAtStr = json1[4].split("[a-z]:")[1].strip();
 
-            Task task = new Task(description);
-            task.id = id;
-            task.status = status;
-            task.createdAt = createdAt;
-            task.updatedAt = updatedAt;
+        Status status = Status.valueOf(statusString.toUpperCase().replace(" ", "_"));
 
-            if (id > lastId) {
-                lastId = id; // Ensure lastId is always up to date
-            }
+        Task task = new Task(description);
+        task.id = Integer.parseInt(id);
+        task.status = status;
+        task.createdAt = LocalDateTime.parse(createdAtStr, formatter);
+        task.updatedAt = LocalDateTime.parse(updatedAtStr, formatter);
 
-            return task;
-        } catch (Exception e) {
-            System.out.println("Error parsing JSON: " + e.getMessage());
-            return null; // Or throw an exception
+        if (Integer.parseInt(id) > lastId) {
+            lastId = Integer.parseInt(id);
         }
+
+        return task;
     }
 
 
