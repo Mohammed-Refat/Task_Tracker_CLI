@@ -15,31 +15,45 @@ public class TaskManager {
     }
 
     /* read tasks.json file */
-    private List<Task> loadTasks(){
-        List<Task> stored_tasks = new ArrayList<>();
+    private List<Task> loadTasks() {
+        List<Task> storedTasks = new ArrayList<>();
 
-        if (!Files.exists(FILE_PATH)){
+        // Check if the file exists
+        if (!Files.exists(FILE_PATH)) {
             return new ArrayList<>();
         }
 
         try {
-            String jsonContent = Files.readString(FILE_PATH);
+            // Read file content
+            String jsonContent = Files.readString(FILE_PATH).trim();
+
+            // Check if the file is empty
+            if (jsonContent.isEmpty()) {
+                return new ArrayList<>();  // Return an empty list if the file is empty
+            }
+
+            // Split tasks by separating their JSON representations
             String[] taskList = jsonContent.replace("[", "")
                     .replace("]", "")
                     .split("},");
-            for (String taskJson : taskList){
-                if (!taskJson.endsWith("}")){
+            for (String taskJson : taskList) {
+                // Make sure each task is properly formatted
+                if (!taskJson.endsWith("}")) {
                     taskJson = taskJson + "}";
-                    stored_tasks.add(Task.fromJson(taskJson));
-                } else {
-                    stored_tasks.add(Task.fromJson(taskJson));
                 }
+                storedTasks.add(Task.fromJson(taskJson));
             }
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            // Handle invalid JSON or unexpected content
+            System.err.println("Error loading tasks: Invalid file content. Starting with an empty task list.");
+            return new ArrayList<>();
         }
-        return stored_tasks;
+
+        return storedTasks;
     }
+
 
     public void saveTasks(){
         StringBuilder sb = new StringBuilder();
