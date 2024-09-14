@@ -95,7 +95,6 @@ java TaskTrackerApp list done
 
 ---
 
-This format is clearer and aligns with standard command-line documentation practices, making it easier for users to follow and understand how to interact with the application.
 
 ## Project Structure
 
